@@ -33,6 +33,8 @@
 </style>
 <script>
 import {Contact} from "../model/Contacts.js"
+import axios from "axios"
+
 export default {
     data() {
         return {
@@ -48,6 +50,12 @@ export default {
             contact.name = this.name;
             contact.phone = this.phone;
             contact.delete = false;
+            const objeto = {
+                ID: contact.id,
+                Nome: contact.name,
+                Telefone: contact.phone
+            }
+            axios.post("http://localhost:9000", objeto);
             this.name = '';
             this.phone = '';
             this.$emit('add-phone', contact);
